@@ -7,7 +7,11 @@
 
 .main-img {
   margin-top: 86px;
-  max-width: 600px;
+  width: 600px;
+  height: 200px;
+  background-image: url(../../../assets/rick-n-morty.png);
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .search-container {
@@ -80,7 +84,8 @@
 @media (width < 700px) {
   .main-img {
     margin-top: 92px;
-    max-width: 312px;
+    width: 312px;
+    height: 104px;
   }
 
   .search-container {
