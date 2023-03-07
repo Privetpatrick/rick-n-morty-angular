@@ -1,0 +1,27 @@
+<div class="container">
+  <img class="main-img" src="../../../assets/rick-n-morty.png" />
+  <div class="search-container">
+    <form [formGroup]="searchForm">
+      <div class="search-icon"></div>
+      <input
+        #input
+        (input)="searchSubmit()"
+        class="search"
+        type="text"
+        name="search"
+        formControlName="search"
+        placeholder="Filter by name..."
+        (keydown.space)="$event.preventDefault()"
+      />
+    </form>
+  </div>
+  <div class="characters-container">
+    <div *ngFor="let character of characters$ | async; trackBy: identify">
+      <app-character-item [character]="character"></app-character-item>
+    </div>
+  </div>
+
+  <div *ngIf="!(characters$ | async)" class="characters-container">
+    <div class="no-results">Sorry no characters with such name.</div>
+  </div>
+</div>
