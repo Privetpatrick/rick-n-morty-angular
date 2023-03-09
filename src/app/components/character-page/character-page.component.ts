@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, shareReplay, switchMap } from 'rxjs';
 
 import { CharactersService } from 'src/app/services/characters.service';
 import { ICharacter } from 'src/app/shared/character.interface';
@@ -11,23 +11,20 @@ import { ICharacter } from 'src/app/shared/character.interface';
   styleUrls: ['./character-page.component.scss'],
 })
 export class CharacterPageComponent implements OnInit {
+  character$!: Observable<ICharacter>;
   character!: ICharacter;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private charactersService: CharactersService
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap
-      .pipe(
-        switchMap((params) =>
-          this.charactersService.getCharacterByID(params.get('id')!)
-        )
-      )
-      .subscribe((character) => {
-        this.character = character;
-      });
+    this.character$ = this.route.paramMap.pipe(
+      switchMap((params) =>
+        this.charactersService.getCharacterByID(params.get('id')!)
+      ),
+      shareReplay()
+    );
   }
 }
