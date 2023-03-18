@@ -1,37 +1,37 @@
-<div *ngIf="(character$ | async) !== null" class="container">
+<div class="container">
   <button class="back" routerLink="/characters">
     <div class="back-icon"></div>
     <div>Go back</div>
   </button>
-  <img class="character-image" src="{{ (character$ | async)!.image }}" />
-  <h1 class="name">{{ (character$ | async)!.name }}</h1>
+  <img class="character-image" src="{{ (character$ | async)?.image }}" />
+  <h1 class="name">{{ (character$ | async)?.name }}</h1>
   <div class="information-container">
     <h4 class="header">Information</h4>
     <div class="info-item">
       <p class="title">Gender</p>
-      <p class="content">{{ (character$ | async)!.gender }}</p>
+      <p class="content">{{ (character$ | async)?.gender }}</p>
       <div class="divider"></div>
     </div>
     <div class="info-item">
       <p class="title">Status</p>
-      <p class="content">{{ (character$ | async)!.status }}</p>
+      <p class="content">{{ (character$ | async)?.status }}</p>
       <div class="divider"></div>
     </div>
     <div class="info-item">
       <p class="title">Species</p>
-      <p class="content">{{ (character$ | async)!.species }}</p>
+      <p class="content">{{ (character$ | async)?.species }}</p>
       <div class="divider"></div>
     </div>
     <div class="info-item">
       <p class="title">Origin</p>
-      <p class="content">{{ (character$ | async)!.origin }}</p>
+      <p class="content">{{ (character$ | async)?.origin }}</p>
       <div class="divider"></div>
     </div>
     <div class="info-item">
       <p class="title">Type</p>
       <p class="content">
         {{
-          (character$ | async)!.type ? (character$ | async)!.type : "Unknown"
+          (character$ | async)?.type ? (character$ | async)?.type : "Unknown"
         }}
       </p>
       <div class="divider"></div>
